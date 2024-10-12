@@ -1,9 +1,48 @@
+var min_page = 1;
+var max_page = 604;
+
+var min_surah = 1;
+var max_surah = 114;
+
 // Wait for the DOM content to load
 document.addEventListener("DOMContentLoaded", function () {
 
     // Get the "Generate" button and verse label by their IDs
     const generateButton = document.getElementById("generate-verse");
     const verseLabel = document.getElementById("verse-text"); // The label for displaying the verse
+    const minPageElement = document.getElementById("min-page"); // Min-page input
+    const maxPageElement = document.getElementById("max-page"); // Max-page input
+
+
+
+    document.getElementById("min-page").addEventListener("change", function () {
+        min_page = minPageElement ? parseInt(minPageElement.value) : 1;
+
+        if (min_page < 1) {
+            min_page = 1; 
+        }
+        if (min_page > 604) {
+            min_page = 604; 
+        }
+        if (min_page > max_page) {
+            min_page = max_page; 
+        }
+        minPageElement.value = min_page;
+    });
+
+    document.getElementById("max-page").addEventListener("change", function () {
+        max_page = maxPageElement ? parseInt(maxPageElement.value) : 604;
+        if (max_page > 604) {
+            max_page = 604;
+        }
+        if (max_page < 1) {
+            max_page = 1;
+        }
+        if (max_page < min_page) {
+            max_page = min_page;
+        }
+        maxPageElement.value = max_page;
+    });
 
     // Add a click event listener to the button
     generateButton.addEventListener("click", generate_verse);
@@ -11,13 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define the generate_verse function
     function generate_verse() {
 
-        // Get min and max page values from the elements with specified IDs
-        var minPageElement = document.getElementById("min-page");
-        var maxPageElement = document.getElementById("max-page");
-
         // Set min_page and max_page based on the input values or defaults
-        var min_page = minPageElement ? parseInt(minPageElement.value) : 1;
-        var max_page = maxPageElement ? parseInt(maxPageElement.value) : 604;
+        min_page = minPageElement ? parseInt(minPageElement.value) : 1;
+        max_page = maxPageElement ? parseInt(maxPageElement.value) : 604;
 
         // Ensure min_page and max_page are valid numbers
         min_page = isNaN(min_page) ? 1 : min_page;
