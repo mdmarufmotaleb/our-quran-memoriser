@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function generate_verse() {
 
         // Get min and max page values from the elements with specified IDs
-        const minPageElement = document.getElementById("min-page");
-        const maxPageElement = document.getElementById("max-page");
+        var minPageElement = document.getElementById("min-page");
+        var maxPageElement = document.getElementById("max-page");
 
         // Set min_page and max_page based on the input values or defaults
         var min_page = minPageElement ? parseInt(minPageElement.value) : 1;
