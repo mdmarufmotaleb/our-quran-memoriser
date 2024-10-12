@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Quran Memoriser</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Our Quran Memoriser</h1>
+        </header>
+        <main>
+            <section class="verse-display">
+                <h2>أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</h2>
+                <div class="verse-container">
+                    <i class="fas fa-eye"></i>
+                    <p id="verse-text">[Apply a filter(s) and click Generate]</p>
+                </div>
+                <p id="current-info">Page: test | Chapter: test | Juz: test</p>
+            </section>
+
+            <section class="filters">
+                <h2>Filters</h2>
+                <div class="filter-group">
+                    <label for="min-page">Pages:</label>
+                    <input type="number" id="min-page" placeholder="Min" min="1" max="5">
+                    <input type="number" id="max-page" placeholder="Max" min="1" max="5">
+                </div>
+                <div class="filter-group">
+                    <label for="min-chapter">Chapters:</label>
+                    <input type="number" id="min-chapter" placeholder="Min" min="1" max="5">
+                    <input type="number" id="max-chapter" placeholder="Max" min="1" max="5">
+                </div>
+                <div class="filter-group">
+                    <label for="min-juz">Juz:</label>
+                    <input type="number" id="min-juz" placeholder="Min" min="1" max="5">
+                    <input type="number" id="max-juz" placeholder="Max" min="1" max="5">
+                </div>
+            </section>
+
+            <section class="navigation">
+                <div class="nav-container">
+                    <button id="prev-verse" class="nav-btn">Previous Verse</button>
+                    <button id="generate-verse" class="generate-btn">Generate Verse</button>
+                    <button id="next-verse" class="nav-btn">Next Verse</button>
+                </div>
+                <div class="nav-container">
+                    <button id="prev-word" class="nav-btn">Previous Word</button>
+                    <button id="next-word" class="nav-btn">Next Word</button>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Quran Memorizer</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
