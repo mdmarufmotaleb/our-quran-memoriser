@@ -11,14 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define the generate_verse function
     function generate_verse() {
 
-        var min_page = 1;
-        var max_page = 9; //max 604
+        // Get min and max page values from the elements with specified IDs
+        const minPageElement = document.getElementById("min-page");
+        const maxPageElement = document.getElementById("max-page");
+
+        // Set min_page and max_page based on the input values or defaults
+        var min_page = minPageElement ? parseInt(minPageElement.value) : 1;
+        var max_page = maxPageElement ? parseInt(maxPageElement.value) : 604;
+
+        // Ensure min_page and max_page are valid numbers
+        min_page = isNaN(min_page) ? 1 : min_page;
+        max_page = isNaN(max_page) ? 604 : max_page;
 
         var page_number = Math.floor(Math.random() * (max_page - min_page + 1)) + min_page;
 
         // API endpoint for generating a random verse with page_number
         const apiEndpoint = `https://api.quran.com/api/v4/verses/random?fields=text_uthmani&page_number=${page_number}`;
-
 
         // Fetch request to the API endpoint
         fetch(apiEndpoint)
