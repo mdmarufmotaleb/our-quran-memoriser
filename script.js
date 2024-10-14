@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
             min_page_set = true;
         }
 
-        if (maxPageElement.value.trim() === "") {
+        if (maxPageElement.value.trim() === "" && minPageElement.value.trim() !== "") {
             max_page = 604;
             maxPageElement.value = max_page;
         }
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
             max_page_set = true;
         }
 
-        if (minPageElement.value.trim() === "") {
+        if (minPageElement.value.trim() === "" && maxPageElement.value.trim() !== "") {
             min_page = 1;
             minPageElement.value = min_page;
         }
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
             min_surah_set = true;
         }
 
-        if (maxSurahElement.value.trim() === "") {
+        if (maxSurahElement.value.trim() === "" && minSurahElement.value.trim() !== "") {
             max_surah = 114;
             maxSurahElement.value = max_surah;
         }
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
             max_surah_set = true;
         }
 
-        if (minSurahElement.value.trim() === "") {
+        if (minSurahElement.value.trim() === "" && maxSurahElement.value.trim() !== "") {
             min_surah = 1;
             minSurahElement.value = min_surah;
         }
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
             min_juz_set = true;
         }
 
-        if (maxJuzElement.value.trim() === "") {
+        if (maxJuzElement.value.trim() === "" && minJuzElement.value.trim() !== "") {
             max_juz = 30;
             maxJuzElement.value = max_juz;
         }
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
             max_juz_set = true;
         }
 
-        if (minJuzElement.value.trim() === "") {
+        if (minJuzElement.value.trim() === "" && maxJuzElement.value.trim() !== "") {
             min_juz = 1;
             minJuzElement.value = min_juz;
         }
