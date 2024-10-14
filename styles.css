@@ -119,4 +119,7 @@ footer {
     text-align: center;
     margin-top: 20px;
     font-size: 0.9em;
+    display: flex;
+    justify-content: space-between; /* Space between the two sections */
+    align-items: center; /* Center align vertically */
 }
