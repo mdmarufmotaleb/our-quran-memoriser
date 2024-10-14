@@ -18,9 +18,13 @@
                 <h2>أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</h2>
                 <div class="verse-container">
                     <i class="fas fa-eye"></i>
-                    <p id="verse-text">[Apply a filter(s) and click Generate]</p>
+                    <p id="verse-text">[Apply a filter(s) and click Generate Verse]</p>
                 </div>
-                <p id="current-info">Page: test | Surah: test | Juz: test</p>
+                <p id="current-info">
+                    Page: <span id="current-page">...</span> | 
+                    Surah: <span id="current-surah">...</span> | 
+                    Juz: <span id="current-juz">...</span>
+                </p>
             </section>
 
             <section class="filters">
@@ -50,6 +54,7 @@
                 </div>
                 <div class="nav-container">
                     <button id="prev-word" class="nav-btn">Previous Word</button>
+                    <button id="reset" class="nav-btn">Reset</button>
                     <button id="next-word" class="nav-btn">Next Word</button>
                 </div>
             </section>

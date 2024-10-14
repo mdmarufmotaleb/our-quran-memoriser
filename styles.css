@@ -57,7 +57,7 @@ h2 {
 /* Use grid for better alignment */
 .filter-group {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
+    grid-template-columns: 1fr 0.75fr 0.75fr 1fr; /* 3 equal columns */
     gap: 10px; /* Space between grid items */
     align-items: center;
     margin-bottom: 10px;
@@ -74,8 +74,9 @@ input[type="number"] {
     background-color: transparent; /* Match background with parent */
 }
 
-#current-info {
-    margin-top: 10px; /* Space above current info */
+.current-info {
+    margin-top: 10px;
+    text-align: left;
 }
 
 .navigation {
