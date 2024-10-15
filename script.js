@@ -49,11 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
             min_page_set = true;
         }
 
-        // if (maxPageElement.value.trim() === "" && minPageElement.value.trim() !== "") {
-        //     max_page = 604;
-        //     maxPageElement.value = max_page;
-        // }
-
         if (min_page !== "") {
             if (min_page < 1) {
                 min_page = 1; 
@@ -76,11 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
             max_page = parseInt(maxPageElement.value);
             max_page_set = true;
         }
-
-        // if (minPageElement.value.trim() === "" && maxPageElement.value.trim() !== "") {
-        //     min_page = 1;
-        //     minPageElement.value = min_page;
-        // }
     
         if (max_page !== "") {
             if (max_page > 604) {
@@ -105,11 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
             min_surah = parseInt(minSurahElement.value);
             min_surah_set = true;
         }
-
-        // if (maxSurahElement.value.trim() === "" && minSurahElement.value.trim() !== "") {
-        //     max_surah = 114;
-        //     maxSurahElement.value = max_surah;
-        // }
     
         if (min_surah !== "") {
             if (min_surah < 1) {
@@ -134,11 +119,6 @@ document.addEventListener("DOMContentLoaded", function () {
             max_surah = parseInt(maxSurahElement.value);
             max_surah_set = true;
         }
-
-        // if (minSurahElement.value.trim() === "" && maxSurahElement.value.trim() !== "") {
-        //     min_surah = 1;
-        //     minSurahElement.value = min_surah;
-        // }
     
         if (max_surah !== "") {
             if (max_surah > 114) {
@@ -164,11 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
             min_juz_set = true;
         }
 
-        // if (maxJuzElement.value.trim() === "" && minJuzElement.value.trim() !== "") {
-        //     max_juz = 30;
-        //     maxJuzElement.value = max_juz;
-        // }
-
         if (min_juz !== "") {
             if (min_juz < 1) {
                 min_juz = 1; 
@@ -191,11 +166,6 @@ document.addEventListener("DOMContentLoaded", function () {
             max_juz = parseInt(maxJuzElement.value);
             max_juz_set = true;
         }
-
-        // if (minJuzElement.value.trim() === "" && maxJuzElement.value.trim() !== "") {
-        //     min_juz = 1;
-        //     minJuzElement.value = min_juz;
-        // }
     
         if (max_juz !== "") {
             if (max_juz > 30) {
@@ -285,9 +255,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function display_verse(data){
-        // Update the label with the verse
+
         this_verse = data.verse.text_uthmani;
         this_verse_key = data.verse.verse_key;
+        this_verse = add_verse_number(this_verse, this_verse_key);
         verseLabel.textContent = this_verse;
 
         var this_page = data.verse.page_number;
@@ -297,6 +268,26 @@ document.addEventListener("DOMContentLoaded", function () {
         thisPage.textContent = this_page;
         thisSurah.textContent = this_surah;
         thisJuz.textContent = this_juz;
+    }
+
+    function add_verse_number(this_verse, this_verse_key) {
+
+        var verse_number = parseInt(this_verse_key.match(/^\d+:(\d+)$/)[1], 10);
+        const arabicNumerals = {
+            '0': '٠',
+            '1': '١',
+            '2': '٢',
+            '3': '٣',
+            '4': '٤',
+            '5': '٥',
+            '6': '٦',
+            '7': '٧',
+            '8': '٨',
+            '9': '٩'
+        };
+    
+        var verse_number_arabic = verse_number.toString().split('').map(digit => arabicNumerals[digit]).join('');
+        return this_verse + " " + verse_number_arabic;
     }
 
     nextVerseButton.addEventListener("click", function() {
