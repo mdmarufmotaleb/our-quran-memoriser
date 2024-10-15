@@ -20,6 +20,7 @@ var this_verse_trimmed = "";
 var this_verse_key;
 var next_verse = "";
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const generateButton = document.getElementById("generate-verse");
@@ -261,6 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
         this_verse_key = data.verse.verse_key;
         this_verse = add_verse_number(this_verse, this_verse_key);
         this_verse_trimmed = this_verse_3_words(this_verse);
+        this_verse_trimmed = remove_hizb_symbol(this_verse_trimmed);
 
         verseLabel.textContent = this_verse_trimmed;
 
@@ -344,12 +346,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
     
-        
     
+    document.getElementById("show-verse").addEventListener("click", function() {
+        // Store the current value of verseLabel
+        const currentVerseLabel = verseLabel.textContent;
     
+        // Function to simulate clicking the next-word button
+        function clickNextWord() {
+            // Click the next-word button
+            document.getElementById("next-word").click();
     
+            // Check if the verseLabel has changed
+            if (verseLabel.textContent !== currentVerseLabel) {
+                // If it has changed, call the function again recursively
+                clickNextWord();
+            }
+        }
     
+        // Start the recursive clicking
+        clickNextWord();
+    });
     
+    function remove_hizb_symbol(this_verse) {
+        // Check if the symbol exists in the verse
+        if (this_verse.includes("۞")) {
+            // Remove the symbol
+            return this_verse.replace(/۞/g, "");
+        } else {
+            return this_verse;
+        }
+    }
+
+
 
     document.getElementById("prev-word").addEventListener("click", function() {
         // Remove the "..." from the trimmed verse for processing

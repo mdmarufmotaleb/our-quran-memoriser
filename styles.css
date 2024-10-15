@@ -123,3 +123,11 @@ footer {
     justify-content: space-between; /* Space between the two sections */
     align-items: center; /* Center align vertically */
 }
+
+#show-verse {
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+#verse-text {
+    font-size: 1.9em; /* Adjust the size as needed */
+}
