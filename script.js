@@ -16,6 +16,7 @@ var max_surah_set = false;
 var max_juz_set = false;
 
 var this_verse = "";
+var this_verse_trimmed = "";
 var this_verse_key;
 var next_verse = "";
 
@@ -259,7 +260,9 @@ document.addEventListener("DOMContentLoaded", function () {
         this_verse = data.verse.text_uthmani;
         this_verse_key = data.verse.verse_key;
         this_verse = add_verse_number(this_verse, this_verse_key);
-        verseLabel.textContent = this_verse;
+        this_verse_trimmed = this_verse_3_words(this_verse);
+
+        verseLabel.textContent = this_verse_trimmed;
 
         var this_page = data.verse.page_number;
         var this_surah = parseInt(String(this_verse_key).match(/^(\d+):/)[1], 10);
@@ -289,6 +292,85 @@ document.addEventListener("DOMContentLoaded", function () {
         var verse_number_arabic = verse_number.toString().split('').map(digit => arabicNumerals[digit]).join('');
         return this_verse + " " + verse_number_arabic;
     }
+
+    function this_verse_3_words(this_verse) {
+        var words = this_verse.split(' ');
+        var first_3_words = words.slice(0, 3).join(' ');
+    
+        // Trim any trailing spaces before checking the last character
+        var trimmedLastWord = first_3_words.trim();
+    
+        // Regular expression to check if the last character is an Arabic numeral (٠ to ٩)
+        var arabicNumeralRegex = /[\u0660-\u0669]$/;
+    
+        // If the last character is not an Arabic numeral, prepend "..."
+        if (!arabicNumeralRegex.test(trimmedLastWord[trimmedLastWord.length - 1])) {
+            return "... " + first_3_words;
+        }
+    
+        // If it is an Arabic numeral, return the first 3 words without "..."
+        return first_3_words;
+    }
+
+    document.getElementById("next-word").addEventListener("click", function() {
+        // Split both the original and trimmed verse into arrays of words
+        var originalWords = this_verse.split(' ');
+        var trimmedWords = this_verse_trimmed.replace("... ", "").split(' ');
+    
+        // Regular expression to check if the last character is an Arabic numeral (٠ to ٩)
+        var arabicNumeralRegex = /[\u0660-\u0669]$/;
+    
+        // Check if the trimmed verse has fewer words than the original
+        if (trimmedWords.length < originalWords.length) {
+            // Add the next word from the original verse to the trimmed one
+            trimmedWords.push(originalWords[trimmedWords.length]);
+    
+            // Update the trimmed verse
+            this_verse_trimmed = trimmedWords.join(' ');
+    
+            // Trim any trailing spaces before checking the last character
+            var trimmedLastWord = this_verse_trimmed.trim();
+    
+            // Only prepend "..." if the current trimmed verse is not just "..."
+            if (!this_verse_trimmed.includes("...") && trimmedWords.length > 1) {
+                // Check if the last character is not an Arabic numeral before adding "..."
+                if (!arabicNumeralRegex.test(trimmedLastWord[trimmedLastWord.length - 1])) {
+                    this_verse_trimmed = "... " + this_verse_trimmed;
+                }
+            }
+    
+            // Update the label with the new trimmed verse
+            verseLabel.textContent = this_verse_trimmed;
+        }
+    });
+    
+        
+    
+    
+    
+    
+    
+
+    document.getElementById("prev-word").addEventListener("click", function() {
+        // Remove the "..." from the trimmed verse for processing
+        var trimmedWords = this_verse_trimmed.replace("... ", "").split(' ');
+    
+        // Always remove the last word if there is one
+        if (trimmedWords.length > 0) {
+            trimmedWords.pop(); // Remove the last word
+        }
+    
+        // Update the trimmed verse
+        this_verse_trimmed = trimmedWords.join(' ');
+    
+        // Always add "..." at the end
+        this_verse_trimmed = this_verse_trimmed ? "... " + this_verse_trimmed : "...";
+    
+        // Update the label with the new trimmed verse
+        verseLabel.textContent = this_verse_trimmed;
+    });
+    
+    
 
     nextVerseButton.addEventListener("click", function() {
         if(this_verse_key !== "") {
