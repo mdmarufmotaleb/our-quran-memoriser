@@ -380,6 +380,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.getElementById("prev-word").addEventListener("click", function() {
+
+        if (verseLabel.textContent === "[Apply a filter(s) and click Generate Verse]") {
+            return; // Do nothing if the condition is met
+        }
         // Remove the "..." from the trimmed verse for processing
         var trimmedWords = this_verse_trimmed.replace("... ", "").split(' ');
     
