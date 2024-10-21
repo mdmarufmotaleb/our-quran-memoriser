@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Our Quran Memoriser </h1>
+            <h1>OurQuran Memoriser </h1>
             This app is incomplete and features may be missing
         </header>
         <main>
@@ -36,7 +36,8 @@
                 <p id="current-info">
                     Page: <span id="current-page">...</span> | 
                     Surah: <span id="current-surah">...</span> | 
-                    Juz: <span id="current-juz">...</span>
+                    Juz: <span id="current-juz">...</span> |
+                    Rub: <span id="current-rub">...</span>
                 </p>
             </section>
 
@@ -57,11 +58,16 @@
                     <input type="number" id="min-juz" placeholder="Min (1)" min="1" max="30">
                     <input type="number" id="max-juz" placeholder="Max (30)" min="1" max="30">
                 </div>
+                <div class="filter-group">
+                    <label for="min-rub">Rub:</label>
+                    <input type="number" id="min-rub" placeholder="Min (1)" min="1" max="240">
+                    <input type="number" id="max-rub" placeholder="Max (240)" min="1" max="240">
+                </div>
             </section>
 
         </main>
         <footer>
-            <p>&copy; Our Quran Memorizer</p>
+            <p>&copy; OurQuran Memorizer</p>
             <p>Powered by <a href="https://www.quran.com" target="_blank" rel="noopener noreferrer">quran.com</a></p>
         </footer>
     </div>

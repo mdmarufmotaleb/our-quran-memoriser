@@ -7,13 +7,18 @@ var max_surah = 114;
 var min_juz = 1;
 var max_juz = 30;
 
+var min_rub = 1;
+var max_rub = 240;
+
 var min_page_set = false;
 var min_surah_set = false;
 var min_juz_set = false;
+var min_rub_set = false;
 
 var max_page_set = false;
 var max_surah_set = false;
 var max_juz_set = false;
+var max_rub_set = false;
 
 var this_verse = "";
 var this_verse_trimmed = "";
@@ -29,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const thisPage = document.getElementById("current-page");
     const thisSurah = document.getElementById("current-surah");
     const thisJuz = document.getElementById("current-juz");
+    const thisRub = document.getElementById("current-rub");
     
     const minPageElement = document.getElementById("min-page"); 
     const maxPageElement = document.getElementById("max-page"); 
@@ -38,6 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const minJuzElement = document.getElementById("min-juz");
     const maxJuzElement = document.getElementById("max-juz");
+
+    const minRubElement = document.getElementById("min-rub");
+    const maxRubElement = document.getElementById("max-rub");
 
     const nextVerseButton = document.getElementById("next-verse");
     const previousVerseButton = document.getElementById("prev-verse");
@@ -183,6 +192,53 @@ document.addEventListener("DOMContentLoaded", function () {
     
         maxJuzElement.value = max_juz;
     });
+
+    minRubElement.addEventListener("change", function () {
+        if (minRubElement.value.trim() === "") {
+            min_rub = "";
+            min_rub_set = false;
+        } else {
+            min_rub = parseInt(minRubElement.value);
+            min_rub_set = true;
+        }
+
+        if (min_rub !== "") {
+            if (min_rub < 1) {
+                min_rub = 1; 
+            }
+            if (min_rub > 240) {
+                min_rub = 30; 
+            }
+            if (min_rub > max_rub) {
+                min_rub = max_rub; 
+            }
+        }
+        minRubElement.value = min_rub;
+    });
+
+    maxRubElement.addEventListener("change", function () {
+        if (maxRubElement.value.trim() === "") {
+            max_rub = "";
+            max_rub_set = false;
+        } else {
+            max_rub = parseInt(maxRubElement.value);
+            max_rub_set = true;
+        }
+    
+        if (max_rub !== "") {
+            if (max_rub > 240) {
+                max_rub = 240;
+            }
+            if (max_rub < 1) {
+                max_rub = 1;
+            }
+            if (max_rub < min_rub) {
+                max_rub = min_rub;
+            }
+        }
+    
+        maxRubElement.value = max_rub;
+    });
     
     generateButton.addEventListener("click", generate_verse);
 
@@ -206,9 +262,16 @@ document.addEventListener("DOMContentLoaded", function () {
         min_juz = isNaN(min_juz) ? 1 : min_juz;
         max_juz = isNaN(max_juz) ? 30 : max_juz;
 
+        min_rub = minRubElement ? parseInt(minRubElement.value) : 1;
+        max_rub = maxRubElement ? parseInt(maxRubElement.value) : 240;
+
+        min_rub = isNaN(min_rub) ? 1 : min_rub;
+        max_rub = isNaN(max_rub) ? 240 : max_rub;
+
         var page_number = Math.floor(Math.random() * (max_page - min_page + 1)) + min_page;
         var surah_number = Math.floor(Math.random() * (max_surah - min_surah + 1)) + min_surah;
         var juz_number = Math.floor(Math.random() * (max_juz - min_juz + 1)) + min_juz;
+        var rub_number = Math.floor(Math.random() * (max_rub - min_rub + 1)) + min_rub;
 
         var filters = [];
 
@@ -220,6 +283,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if(min_juz_set || max_juz_set) {
             filters.push("juz_set");
+        }
+        if(min_rub_set || max_rub_set) {
+            filters.push("rub_set");
         }
 
         var apiEndpoint = `https://api.quran.com/api/v4/verses/random?fields=text_uthmani`;
@@ -236,16 +302,17 @@ document.addEventListener("DOMContentLoaded", function () {
             if(chosen_filter === "juz_set") {
                 apiEndpoint = `https://api.quran.com/api/v4/verses/random?fields=text_uthmani&juz_number=${juz_number}`;
             }
+            if(chosen_filter === "rub_set") {
+                apiEndpoint = `https://api.quran.com/api/v4/verses/random?fields=text_uthmani&rub_el_hizb_number=${rub_number}}`;
+            }
         }
 
-        // Fetch request to the API endpoint
         fetch(apiEndpoint)
             .then(response => {
-                // Check if the response is okay
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
-                return response.json(); // Parse the response as JSON
+                return response.json();
             })
             .then(data => {
                 display_verse(data);
@@ -269,10 +336,12 @@ document.addEventListener("DOMContentLoaded", function () {
         var this_page = data.verse.page_number;
         var this_surah = parseInt(String(this_verse_key).match(/^(\d+):/)[1], 10);
         var this_juz = data.verse.juz_number;
+        var this_rub = data.verse.rub_el_hizb_number;
          
         thisPage.textContent = this_page;
         thisSurah.textContent = this_surah;
         thisJuz.textContent = this_juz;
+        thisRub.textContent = this_rub;
     }
 
     function add_verse_number(this_verse, this_verse_key) {
@@ -667,5 +736,7 @@ document.addEventListener("DOMContentLoaded", function () {
         maxSurahElement.value = "";
         minJuzElement.value = "";
         maxJuzElement.value = "";
+        minRubElement.value = "";
+        maxRubElement.value = "";
     });
 });
