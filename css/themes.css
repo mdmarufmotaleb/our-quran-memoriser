@@ -1,0 +1,89 @@
+/* Default Sepia Theme */
+body.sepia-theme {
+    background-color: #f5f1e6;
+    color: #3b2a20;
+}
+
+body.sepia-theme .verse-display,
+body.sepia-theme .filters {
+    background-color: #d9c6b5;
+}
+
+body.sepia-theme h1,
+body.sepia-theme h2,
+body.sepia-theme .verse-container i,
+body.sepia-theme .nav-btn,
+body.sepia-theme .generate-btn {
+    color: #3b2a20;
+}
+
+body.sepia-theme .nav-btn,
+body.sepia-theme .generate-btn {
+    background-color: #3b2a20;
+    color: white;
+}
+
+body.sepia-theme .nav-btn:hover,
+body.sepia-theme .generate-btn:hover {
+    background-color: #5a3c30;
+}
+
+/* Light Theme */
+body.light-theme {
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+body.light-theme .verse-display,
+body.light-theme .filters {
+    background-color: #e6f7ff;
+}
+
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme .verse-container i,
+body.light-theme .nav-btn,
+body.light-theme .generate-btn {
+    color: #4682b4;
+}
+
+body.light-theme .nav-btn,
+body.light-theme .generate-btn {
+    background-color: #4682b4;
+    color: white;
+}
+
+body.light-theme .nav-btn:hover,
+body.light-theme .generate-btn:hover {
+    background-color: #5f9ea0;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-theme .verse-display,
+body.dark-theme .filters {
+    background-color: #212121;
+}
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme .verse-container i,
+body.dark-theme .nav-btn,
+body.dark-theme .generate-btn {
+    color: #bb86fc;
+}
+
+body.dark-theme .nav-btn,
+body.dark-theme .generate-btn {
+    background-color: #bb86fc;
+    color: #121212;
+}
+
+body.dark-theme .nav-btn:hover,
+body.dark-theme .generate-btn:hover {
+    background-color: #ce93d8;
+}

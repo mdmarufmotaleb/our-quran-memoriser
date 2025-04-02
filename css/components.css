@@ -1,0 +1,93 @@
+/* Styles for specific components */
+
+/* Theme Selector */
+.theme-selector {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.theme-btn {
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.8em;
+}
+
+.theme-btn.sepia-theme {
+    background-color: #d9c6b5;
+    color: #3b2a20;
+}
+
+.theme-btn.light-theme {
+    background-color: #e6f7ff;
+    color: #4682b4;
+}
+
+.theme-btn.dark-theme {
+    background-color: #212121;
+    color: #bb86fc;
+}
+
+/* Filters */
+.filters {
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filters-toggle-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.filters-content {
+    display: none; /* Initially hidden */
+}
+
+.filters-content.show {
+    display: block; /* Show when toggled */
+}
+
+.filter-group {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Adjust columns for better centering */
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    text-align: right;
+    color: #555;
+    grid-column: 1; /* Label in the first column */
+}
+
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+    grid-column: 2; /* Inputs in the second column */
+}
+
+/* Rest of the components CSS remains the same */
